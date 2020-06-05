@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from rest_framework import viewsets #This is the base module for all the viewsets that django REST framework offers.
+
 from rest_framework.views import APIView    #This imports the APIView class from the django REST Framework.
 from rest_framework.response import Response   #Standard response object that we return from our APIView and that can be rendered into an API output.
 from rest_framework import status    #It contains HTTP standard codes like HTTP 404,etc.
@@ -52,3 +54,17 @@ class HelloApiView(APIView):
         """Deletes an object."""
 
         return Response({'method' : 'delete'})
+
+class HelloViewSet(viewsets.ViewSet):
+    """Test API ViewSet"""
+
+    def list(self, request):    #This is same as GET function as in APIView.
+        """Retruns a hello message."""
+
+        a_viewset =[
+            'Uses actions(list, create, retrieve, update, partial update, partial update)',
+            'Automatically maps to URLs using Routers',
+            'Provides more functionality with less code.',
+        ]
+
+        return Response({'message': 'Hello!', 'a_viewset' : a_viewset})
