@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser   #Base for our user model
 from django.contrib.auth.models import PermissionsMixin    #Controls permisiions granted to user
-from django.contrib.auth.models import BaseUserManager    
+from django.contrib.auth.models import BaseUserManager
 # Create your models here.
 
 class UserProfileManager(BaseUserManager):
@@ -45,7 +45,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     objects = UserProfileManager()  #This is also present in inbuilt django 'user model'.
 
-    USERNAME_FIELD = 'email'   # We are using email instead of any custom name of User-Name.
+    USERNAME_FIELD = 'email'   # We are using email instead of using name for User-Name.
     REQUIRED_FIELDS = ['name']   # List of fields that are required for every user.
 
     def get_full_name(self):

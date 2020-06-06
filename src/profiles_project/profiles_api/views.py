@@ -7,6 +7,7 @@ from rest_framework.response import Response   #Standard response object that we
 from rest_framework import status    #It contains HTTP standard codes like HTTP 404,etc.
 
 from . import serializers
+from . import models
 
 # Create your views here.
 
@@ -106,3 +107,11 @@ class HelloViewSet(viewsets.ViewSet):
         """Handles removing an object."""
 
         return Response({'http_method' : 'DELETE'})
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handles creating and updating profile."""
+
+    serializer_class = serializers.UserProfileSerializer
+
+    queryset = models.UserProfile.objects.all()
