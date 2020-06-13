@@ -5,9 +5,11 @@ from rest_framework import viewsets #This is the base module for all the viewset
 from rest_framework.views import APIView    #This imports the APIView class from the django REST Framework.
 from rest_framework.response import Response   #Standard response object that we return from our APIView and that can be rendered into an API output.
 from rest_framework import status    #It contains HTTP standard codes like HTTP 404,etc.
+from rest_framework.authentication import TokenAuthentication
 
 from . import serializers
 from . import models
+from . import permissions
 
 # Create your views here.
 
@@ -113,5 +115,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     """Handles creating and updating profile."""
 
     serializer_class = serializers.UserProfileSerializer
-
     queryset = models.UserProfile.objects.all()
+
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
