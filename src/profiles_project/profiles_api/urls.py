@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')    #Registering a URl with our router that point towards our  HelloViewSet
 router.register('profile', views.UserProfileViewSet)    #We dont need to specify the base name here becuase when we are registering a model serializer then django Automatically looks at the model that is registered with the serializer which is registered on our viewset."""
 router.register('login', views.LoginViewSet, base_name='login')
+router.register('feed', views.UserProfileFeedViewSet)
 
 urlpatterns = [
     url(r'^hello-view/', views.HelloApiView.as_view()),
